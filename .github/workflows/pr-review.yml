@@ -1,0 +1,23 @@
+name: Review Devin
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+jobs:
+  review-pr:
+    if: |
+      github.event.issue.pull_request != null &&
+      contains(github.event.comment.body, 'review-devin')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log info
+        run: |
+          echo "Review comment created by ${{ github.actor }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Comment body: ${{ github.event.comment.body }}"
