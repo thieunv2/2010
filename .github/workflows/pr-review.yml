@@ -1,0 +1,15 @@
+name: On PR Review Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  handle-review-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log info
+        run: |
+          echo "Review comment created by ${{ github.actor }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Comment body: ${{ github.event.comment.body }}"
