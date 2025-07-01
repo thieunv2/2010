@@ -11,9 +11,7 @@ permissions:
 
 jobs:
   review-pr:
-    if: |
-      github.event.issue.pull_request != null &&
-      contains(github.event.comment.body, 'review-devin')
+    if: contains(github.event.comment.body, 'review-devin')
 
     runs-on: ubuntu-latest
     steps:
