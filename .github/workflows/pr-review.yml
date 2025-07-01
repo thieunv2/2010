@@ -25,6 +25,7 @@ jobs:
       - name: Get PR files
         id: pr-files
         run: |
+          echo "Fetching files changed in PR #${{ github.event }}..."
           FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" | \
             jq -r '[.[].filename] | @json')
